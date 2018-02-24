@@ -9,13 +9,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author engan.bala
  */
-@Entity(name = "CRUST")
+@Entity(name = "Crust")
+@Table(name="CRUST")
 @XmlRootElement
 public class Crust implements Serializable {
 

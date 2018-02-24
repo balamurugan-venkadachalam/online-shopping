@@ -5,29 +5,37 @@ import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 /**
  *
  * @author engan.bala
  */
-@Entity(name="PIZZA_TOPPING")
+@Entity(name="PizzaTopping")
+@Table(name="PIZZA_TOPPING")
 @XmlRootElement
 public class PizzaTopping implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "ID")
     private Integer id;
     
     @JoinColumn(name = "PIZZA_ORDER_ID", referencedColumnName = "PIZZA_ORDER_ID")
     @ManyToOne
-    private PizzaOrder pizzaOrderId;
+    @JsonBackReference
+    private PizzaLineItem pizzaOrderId;
     
     @JoinColumn(name = "TOPPING_ID", referencedColumnName = "TOOPING_ID")
     @ManyToOne
@@ -39,6 +47,13 @@ public class PizzaTopping implements Serializable {
     public PizzaTopping(Integer id) {
         this.id = id;
     }
+    
+    public PizzaTopping(PizzaLineItem pizzaOrderId, Tooping toppingId) {
+        this.id = id;
+        this.pizzaOrderId = pizzaOrderId;
+        this.toppingId = toppingId;
+    }
+
 
     public Integer getId() {
         return id;
@@ -48,11 +63,11 @@ public class PizzaTopping implements Serializable {
         this.id = id;
     }
 
-    public PizzaOrder getPizzaOrderId() {
+    public PizzaLineItem getPizzaOrderId() {
         return pizzaOrderId;
     }
 
-    public void setPizzaOrderId(PizzaOrder pizzaOrderId) {
+    public void setPizzaOrderId(PizzaLineItem pizzaOrderId) {
         this.pizzaOrderId = pizzaOrderId;
     }
 

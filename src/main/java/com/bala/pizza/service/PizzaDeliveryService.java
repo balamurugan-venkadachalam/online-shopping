@@ -2,13 +2,13 @@ package com.bala.pizza.service;
 
 import java.util.List;
 
-import com.bala.pizza.domain.model.OnlineOrder;
+import com.bala.pizza.domain.model.PizzaOrder;
 
 public interface PizzaDeliveryService {
 
-	public List<OnlineOrder> fetchDeliverys();
+	public List<PizzaOrder> fetchOrders();
 	
-	public void deleteDelivery(int id);
+	public void deleteDelivery(long orderid);
 	
 	
 }
