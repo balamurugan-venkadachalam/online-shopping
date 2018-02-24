@@ -32,10 +32,10 @@ public class PizzaTopping implements Serializable {
     @Column(name = "ID")
     private Integer id;
     
-    @JoinColumn(name = "PIZZA_ORDER_ID", referencedColumnName = "PIZZA_ORDER_ID")
+    @JoinColumn(name = "LINE_ITEM_ID", referencedColumnName = "LINE_ITEM_ID")
     @ManyToOne
     @JsonBackReference
-    private PizzaLineItem pizzaOrderId;
+    private PizzaLineItem pizzaLineItem;
     
     @JoinColumn(name = "TOPPING_ID", referencedColumnName = "TOOPING_ID")
     @ManyToOne
@@ -48,9 +48,8 @@ public class PizzaTopping implements Serializable {
         this.id = id;
     }
     
-    public PizzaTopping(PizzaLineItem pizzaOrderId, Tooping toppingId) {
-        this.id = id;
-        this.pizzaOrderId = pizzaOrderId;
+    public PizzaTopping(PizzaLineItem pizzaLineItem, Tooping toppingId) {
+        this.pizzaLineItem = pizzaLineItem;
         this.toppingId = toppingId;
     }
 
@@ -63,12 +62,12 @@ public class PizzaTopping implements Serializable {
         this.id = id;
     }
 
-    public PizzaLineItem getPizzaOrderId() {
-        return pizzaOrderId;
+    public PizzaLineItem getPizzaLineItem() {
+        return pizzaLineItem;
     }
 
-    public void setPizzaOrderId(PizzaLineItem pizzaOrderId) {
-        this.pizzaOrderId = pizzaOrderId;
+    public void setPizzaLineItem(PizzaLineItem pizzaOrderId) {
+        this.pizzaLineItem = pizzaOrderId;
     }
 
     public Tooping getToppingId() {

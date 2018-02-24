@@ -26,18 +26,18 @@ public class TestUtils {
 		order.setCustomerName("Customer name");
 		order.setCustomerContact("+64 11 452 3625");
 
-		PizzaLineItem pizzaOrder = new PizzaLineItem();
-		pizzaOrder.setCrustId(new Crust(10));
-		pizzaOrder.setPizzaId(new Pizza(1001));
-		pizzaOrder.setPizzaSizeId(new PizzaSize(3));
-		pizzaOrder.setPizzaOrderId(10001);
-		pizzaOrder.setOrderId(order);
-		order.getPizzaOrderCollection().add(pizzaOrder);
+		PizzaLineItem pizzaLineItem = new PizzaLineItem();
+		pizzaLineItem.setCrust(new Crust(10));
+		pizzaLineItem.setPizza(new Pizza(1001));
+		pizzaLineItem.setPizzaSize(new PizzaSize(3));
+		pizzaLineItem.setPizzaOrderId(10001);
+		pizzaLineItem.setPizzaOrder(order);
+		order.getPizzaLineItemCollection().add(pizzaLineItem);
 
 		PizzaTopping pizzaTopping= new PizzaTopping(1);
 		pizzaTopping.setToppingId(new Tooping(110));		
-		pizzaTopping.setPizzaOrderId(pizzaOrder);
-		pizzaOrder.getPizzaToppingCollection().add(pizzaTopping);	
+		pizzaTopping.setPizzaLineItem(pizzaLineItem);
+		pizzaLineItem.getPizzaToppingCollection().add(pizzaTopping);	
 		
 		return order;
 	}

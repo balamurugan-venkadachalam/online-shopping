@@ -113,11 +113,11 @@ public class PizzaOrder implements Serializable {
     }
 
     @XmlTransient
-    public Collection<PizzaLineItem> getPizzaOrderCollection() {
+    public Collection<PizzaLineItem> getPizzaLineItemCollection() {
         return pizzaOrderCollection;
     }
 
-    public void setPizzaOrderCollection(Collection<PizzaLineItem> pizzaOrderCollection) {
+    public void setPizzaLineItemCollection(Collection<PizzaLineItem> pizzaOrderCollection) {
         this.pizzaOrderCollection = pizzaOrderCollection;
     }
 
