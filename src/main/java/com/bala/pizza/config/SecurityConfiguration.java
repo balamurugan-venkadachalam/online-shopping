@@ -8,6 +8,13 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
+
+/**
+ * Spring Securigy Configuration 
+ * @author engan.bala
+ *
+ */
 
 @Configuration
 @EnableWebSecurity
@@ -26,15 +33,20 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
  
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-    	//TODO: Enable valid url  
+    
+    	//TODO: Enable valid url
+    	//.csrf() is enabled by default
     	http
 		.authorizeRequests()
-			//.antMatchers("/pizza/delivery/**").hasRole("ADMIN")			
-			//.antMatchers("/css/**", "/pizza").permitAll()
-			//.antMatchers("/js/**", "/pizza/**").permitAll()
+		// security disabled to run the application
+		//.antMatchers("/pizza/delivery/**").hasRole("ADMIN")			
+			.antMatchers("/css/**", "/pizza").permitAll()
+			.antMatchers("/js/**", "/pizza/**").permitAll()
 			.antMatchers("/**").permitAll()
 			.and()
-			.httpBasic();
+			.httpBasic()
+			.and()
+			.csrf();
     }
     
 	@Bean

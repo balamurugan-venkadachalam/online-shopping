@@ -5,6 +5,7 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 
 import javax.validation.Valid;
 
+import org.owasp.esapi.ESAPI;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,7 +73,8 @@ public class PizzaOrderController {
 
 	private Resource<PizzaOrder> attachResourceUri(PizzaOrder pizzaOrder) {
 		Resource<PizzaOrder> resource = new Resource<PizzaOrder>(pizzaOrder);
-		ControllerLinkBuilder linkTo = linkTo(methodOn(this.getClass()).getOrder(pizzaOrder.getOrderId()));
+		ControllerLinkBuilder linkTo = linkTo(methodOn(this.getClass())
+				.getOrder((pizzaOrder.getOrderId())));
 		resource.add(linkTo.withRel("Order"));
 		return resource;
 	}

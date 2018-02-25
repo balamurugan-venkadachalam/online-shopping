@@ -1,9 +1,12 @@
+Your Choice Pizza Application
+______________________________
+
 
 Swagger URL : http://localhost:8080/swagger-ui.html
 
 H2 Database URL : http://localhost:8080/h2-console/login.do
 
-JDBC URL to check database in h2-console : jdbc:h2:mem:testdb
+h2-console JDBC URL  : jdbc:h2:mem:testdb
 
 
 POST /pizza/order - input data
@@ -53,6 +56,7 @@ POST /pizza/order - input data
 11) URL encryption  
 12) Payment gate way integration 
 13) Email, SMS, Push notification
+14) Restful request response encryption and sanitizer html code
  
 
 //TODO:Front end
