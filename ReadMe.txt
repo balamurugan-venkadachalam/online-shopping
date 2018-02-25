@@ -47,11 +47,11 @@ POST /pizza/order - input data
 2) Swagger documentation 
 3) Java documentation
 4) Login for delivery and delete order
-5) Exception handling and proper rest response code
+5) Google, Facebook sign in (Oauth 2 implementation)
 6) Implement HATEOAS (Hypermedia as the Engine of Application State)
 7) Hibernate query tuning
 8) Implement unit test and integration test  
-9) Google, Facebook sign in (Oauth 2 implementation)
+9)  Exception handling and proper rest response code
 10) Password hashing
 11) URL encryption  
 12) Payment gate way integration 
