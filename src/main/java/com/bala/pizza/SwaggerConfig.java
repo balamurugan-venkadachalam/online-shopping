@@ -16,7 +16,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 public class SwaggerConfig {
 
-	public static final ApiInfo DEFAULT_API_INFO = new ApiInfo("Your Choice Pizza", "Awesome API Description", "1.0",
+	public static final ApiInfo DEFAULT_API_INFO = new ApiInfo("Your Choice Pizza", "Your Choice Pizza API Description", "1.0",
 			"urn:tos", "test@yourchoicepizza.com", "Apache 2.0", "http://www.apache.org/licenses/LICENSE-2.0");
 
 	private static final Set<String> DEFAULT_PRODUCES_AND_CONSUMES = new HashSet<String>(

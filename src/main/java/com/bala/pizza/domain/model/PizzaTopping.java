@@ -5,6 +5,7 @@ import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -40,7 +41,7 @@ public class PizzaTopping implements Serializable {
     
 	@NotNull(message="Topping id mandatory")
     @JoinColumn(name = "TOPPING_ID", referencedColumnName = "TOOPING_ID")
-    @ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
     private Tooping toppingId;
 
     public PizzaTopping() {

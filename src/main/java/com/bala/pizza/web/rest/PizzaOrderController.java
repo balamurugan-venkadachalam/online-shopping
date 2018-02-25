@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.Resource;
 import org.springframework.hateoas.mvc.ControllerLinkBuilder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -35,7 +36,7 @@ public class PizzaOrderController {
 	public @ResponseBody Resource<PizzaOrder>  order(@Valid @RequestBody PizzaOrder order) {
 		logger.info("pizza order input {}", order);
 		
-		
+		//TODO: build input model using builder design pattern and validate input total price 
 				
 		PizzaOrder pizzaOrder = pizzaOrderService.saveOrder(order);
 		if(pizzaOrder == null){
@@ -49,7 +50,7 @@ public class PizzaOrderController {
 
 	
 	@GetMapping("/pizza/order/{orderId}")
-	public @ResponseBody PizzaOrder getOrder(Long orderId){
+	public @ResponseBody PizzaOrder getOrder(@PathVariable Long orderId){
 		return pizzaOrderService.fetchOrder(orderId);
 		
 	}

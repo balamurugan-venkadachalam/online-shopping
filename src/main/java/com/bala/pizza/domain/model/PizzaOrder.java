@@ -13,7 +13,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -58,7 +57,7 @@ public class PizzaOrder implements Serializable {
     private String deliveryNote;
     
     @NotNull(message="Atleast one line item mandatory")
-    @OneToMany(mappedBy = "pizzaOrder", fetch = FetchType.LAZY, cascade = { CascadeType.ALL }, orphanRemoval = true )
+    @OneToMany(mappedBy = "pizzaOrder", fetch = FetchType.EAGER, cascade = { CascadeType.ALL }, orphanRemoval = true )
     @JsonManagedReference
     private Collection<PizzaLineItem> pizzaOrderCollection =  new ArrayList<>();
 

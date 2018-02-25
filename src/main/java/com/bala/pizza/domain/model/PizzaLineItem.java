@@ -44,7 +44,7 @@ public class PizzaLineItem implements Serializable {
 	
 	@NotNull(message="Pizza size mandatory")
     @JoinColumn(name = "PIZZA_SIZE_ID", referencedColumnName = "PIZZA_SIZE_ID")
-    @ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
     private PizzaSize pizzaSize;
 	
 	@Column(name = "PRICE")
@@ -55,24 +55,24 @@ public class PizzaLineItem implements Serializable {
 	
 	@NotNull(message="Crust mandatory")
 	@JoinColumn(name = "CRUST_ID", referencedColumnName = "CUST_ID")
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	private Crust crust;
 	
 	@JoinColumn(name = "ORDER_ID", referencedColumnName = "ORDER_ID")
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JsonBackReference
 	private PizzaOrder pizzaOrder;
 	
 	@NotNull(message="Pizza mandatory")
 	@JoinColumn(name = "PIZZA_ID", referencedColumnName = "PIZZA_ID")
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	private Pizza pizza;
 	
 
 	private int[] toppingIds;
 	
 	@NotNull(message="Toopings mandatory")
-	@OneToMany(mappedBy = "pizzaLineItem", fetch = FetchType.LAZY, cascade = { CascadeType.ALL }, orphanRemoval = true )
+	@OneToMany(mappedBy = "pizzaLineItem", fetch = FetchType.EAGER, cascade = { CascadeType.ALL }, orphanRemoval = true )
 	@JsonManagedReference
 	private Collection<PizzaTopping> pizzaToppingCollection =  new ArrayList<>();
 
