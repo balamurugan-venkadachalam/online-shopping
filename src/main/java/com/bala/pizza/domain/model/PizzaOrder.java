@@ -2,6 +2,7 @@ package com.bala.pizza.domain.model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -55,6 +56,12 @@ public class PizzaOrder implements Serializable {
     
     @Column(name = "DELIVERY_NOTE")
     private String deliveryNote;
+    
+    @Column(name = "ORDER_DATE")
+    private Date orderDate;
+    
+    @Column(name = "DELIVER_DATE")
+    private Date deliverDate;
     
     @NotNull(message="Atleast one line item mandatory")
     @OneToMany(mappedBy = "pizzaOrder", fetch = FetchType.EAGER, cascade = { CascadeType.ALL }, orphanRemoval = true )
@@ -125,6 +132,22 @@ public class PizzaOrder implements Serializable {
         this.pizzaOrderCollection = pizzaOrderCollection;
     }
     
+	public Date getOrderDate() {
+		return orderDate;
+	}
+
+	public void setOrderDate(Date orderDate) {
+		this.orderDate = orderDate;
+	}
+
+	public Date getDeliverDate() {
+		return deliverDate;
+	}
+
+	public void setDeliverDate(Date deliverDate) {
+		this.deliverDate = deliverDate;
+	}
+
 	public void addAmount(BigDecimal price){
 		this.setTotalAmount(this.getTotalAmount().add(price));
 	}
