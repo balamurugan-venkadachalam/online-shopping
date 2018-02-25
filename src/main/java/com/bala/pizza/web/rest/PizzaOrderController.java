@@ -22,6 +22,11 @@ import com.bala.pizza.domain.model.PizzaOrder;
 import com.bala.pizza.exception.OrderNotCreatedException;
 import com.bala.pizza.service.PizzaOrderService;
 
+/**
+ * This service is used for order pizza 
+ * @author engan.bala
+ *
+ */
 @RestController
 public class PizzaOrderController {
 	
@@ -32,6 +37,11 @@ public class PizzaOrderController {
 	@Autowired
 	PizzaOrderService pizzaOrderService;
 	
+	/**
+	 * This method is used to order pizza
+	 * @param order json order details
+	 * @return order details with order number
+	 */
 	@PutMapping("/pizza/order")
 	public @ResponseBody Resource<PizzaOrder>  order(@Valid @RequestBody PizzaOrder order) {
 		logger.info("pizza order input {}", order);
@@ -48,14 +58,18 @@ public class PizzaOrderController {
 	}
 
 
-	
+	/**
+	 * This method is used for fetch order 
+	 * @param orderId order id
+	 * @return order details 
+	 */
 	@GetMapping("/pizza/order/{orderId}")
 	public @ResponseBody PizzaOrder getOrder(@PathVariable Long orderId){
 		return pizzaOrderService.fetchOrder(orderId);
 		
 	}
 	
-	
+
 	private Resource<PizzaOrder> attachResourceUri(PizzaOrder pizzaOrder) {
 		Resource<PizzaOrder> resource = new Resource<PizzaOrder>(pizzaOrder);
 		ControllerLinkBuilder linkTo = linkTo(methodOn(this.getClass()).getOrder(pizzaOrder.getOrderId()));

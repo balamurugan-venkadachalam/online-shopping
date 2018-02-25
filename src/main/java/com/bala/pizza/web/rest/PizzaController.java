@@ -15,7 +15,7 @@ import com.bala.pizza.domain.model.Tooping;
 import com.bala.pizza.service.PizzaService;
 
 /**
- * 
+ * This class provide pizza menu service for customize pizza order
  * @author engan.bala
  *
  */
@@ -28,23 +28,37 @@ public class PizzaController {
 	private PizzaService pizzaService;
 	
 
-
+	/**
+	 * This method is used to load all type of pizza
+	 * @return pizza list
+	 */
 	@GetMapping("/pizzas")
 	public List<Pizza> getPizzas(){
 		return pizzaService.getPizzas();
 	}
 	
+	/**
+	 * This method is used to load all pizza size
+	 * @return pizza size list
+	 */
 	@GetMapping("/pizza/sizes")
 	public List<PizzaSize> getPizzaSizes(){
 		return pizzaService.getPizzaSizes();				
 	}
 	
+	/**
+	 * This method is used to load all type of pizza toopings
+	 * @return pizza tooping list
+	 */
 	@GetMapping("/pizza/toopings")
 	public List<Tooping> getPizzaToopings(){
 		return pizzaService.getToopings();				
 	}
 	
-	
+	/**
+	 * This method is used to load all type of pizza crusts
+	 * @return pizza crusts list
+	 */
 	@GetMapping("/pizza/crusts")
 	public List<Crust> getPizzaCrusts(){
 		return pizzaService.getCrusts();
