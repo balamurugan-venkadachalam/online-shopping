@@ -17,7 +17,24 @@ body > .container > .item > .pizza {
 
 body > .container > .item > .order {
     min-height: 500px;
+    border-left: 1px solid #333;
 }
+
+.order-header {
+    min-height: 100px;
+    text-align: center;
+}
+
+.order-body {
+    min-height: 100px;
+}
+
+.order-footer {
+    min-height: 100px;
+}
+
+
+
 
 code {
     font-size: 80%;
