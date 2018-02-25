@@ -1,33 +1,32 @@
 
 Swagger URL : http://localhost:8080/swagger-ui.html
 H2 Database URL : http://localhost:8080/h2-console/login.do
+JDBC URL to check database in h2-console : jdbc:h2:mem:testdb
 
 
 POST /pizza/order - input data
 ------------------------------
-{
+{  
    "customerName":"Customer name",
    "customerAddress":"Address 1",
    "customerContact":"+64 11 452 3625",
-   "totalAmount":22.00",
-   "pizzaOrderCollection":[
-      {
-         "pizzaOrderId":10001,
-         "pizzaSizeId":{
+   "totalAmount":"22.00 ",
+   "pizzaOrderCollection":[  
+      {  
+         "pizzaSize":{  
             "pizzaSizeId":3
          },
          "price":null,
          "notes":null,
-         "crustId":{
+         "crust":{  
             "custId":10
          },
-         "pizzaId":{
+         "pizza":{  
             "pizzaId":1001
          },
-         "pizzaToppingCollection":[
-            {
-               "id":1,
-               "toppingId":{
+         "pizzaToppingCollection":[  
+            {  
+               "toppingId":{  
                   "toopingId":110
                }
             }
@@ -35,3 +34,18 @@ POST /pizza/order - input data
       }
    ]
 }
+//TODO: Back end
+
+1) Implement second level cache
+2) Swagger documentation
+3) Java documentation
+4) Validation
+5) Login for delivery and delete order
+6) Exception handling and proper rest response code
+7) Implement HATEOAS (Hypermedia as the Engine of Application State)
+8) Hibernate query tuning
+9) Implement unit test and integration test   
+
+//TODO:Front end
+
+

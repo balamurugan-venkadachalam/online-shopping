@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -37,6 +38,7 @@ public class PizzaTopping implements Serializable {
     @JsonBackReference
     private PizzaLineItem pizzaLineItem;
     
+	@NotNull(message="Topping id mandatory")
     @JoinColumn(name = "TOPPING_ID", referencedColumnName = "TOOPING_ID")
     @ManyToOne
     private Tooping toppingId;
@@ -98,9 +100,11 @@ public class PizzaTopping implements Serializable {
         return true;
     }
 
-    @Override
-    public String toString() {
-        return "pizzashop.PizzaTopping[ id=" + id + " ]";
-    }
+	@Override
+	public String toString() {
+		return "PizzaTopping [id=" + id + ", pizzaLineItem=" + pizzaLineItem.getPizzaLineItem() + ", toppingId=" + toppingId + "]";
+	}
+
+
     
 }

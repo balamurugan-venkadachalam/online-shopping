@@ -1,7 +1,5 @@
 package com.bala.pizza.domain.repository;
 
-import java.util.List;
-
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,12 +12,15 @@ import org.springframework.test.context.junit4.SpringRunner;
 import com.bala.ms.pizza.common.TestUtils;
 import com.bala.pizza.PizzaServiceApplication;
 import com.bala.pizza.domain.model.PizzaOrder;
-import com.bala.pizza.domain.model.Tooping;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = PizzaServiceApplication.class)
+@DataJpaTest
 public class OnlineOrderRepositoryTest {
 
+
+    @Autowired
+    private TestEntityManager entityManager;
     
     @Autowired
     private OnlineOrderRepository onlineOrderRepository;

@@ -3,6 +3,7 @@ package com.bala.pizza.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import com.bala.pizza.domain.model.Crust;
@@ -50,6 +51,7 @@ public class PizzaServiceImpl implements PizzaService{
 		return toopingRepository.findAll();
 	}
 
+	@Cacheable
 	@Override
 	public List<Crust> getCrusts() {
 		return crustRepository.findAll();

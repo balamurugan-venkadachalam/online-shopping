@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -27,6 +28,7 @@ public class PizzaSize implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "PIZZA_SIZE_ID")
+	@NotNull(message="Pizza size id mandatory")
     private Integer pizzaSizeId;
     
     @Column(name = "PIZZA_SIZE_NAME")

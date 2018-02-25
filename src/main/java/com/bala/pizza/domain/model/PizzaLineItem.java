@@ -3,6 +3,7 @@ package com.bala.pizza.domain.model;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 
 import javax.persistence.Basic;
@@ -17,6 +18,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -38,8 +40,9 @@ public class PizzaLineItem implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Basic(optional = false)
 	@Column(name = "LINE_ITEM_ID")
-	private Integer itemId;
+	private Integer pizzaLineItem;
 	
+	@NotNull(message="Pizza size mandatory")
     @JoinColumn(name = "PIZZA_SIZE_ID", referencedColumnName = "PIZZA_SIZE_ID")
     @ManyToOne
     private PizzaSize pizzaSize;
@@ -50,6 +53,7 @@ public class PizzaLineItem implements Serializable {
 	@Column(name = "NOTES")
 	private String notes;
 	
+	@NotNull(message="Crust mandatory")
 	@JoinColumn(name = "CRUST_ID", referencedColumnName = "CUST_ID")
 	@ManyToOne
 	private Crust crust;
@@ -59,6 +63,7 @@ public class PizzaLineItem implements Serializable {
 	@JsonBackReference
 	private PizzaOrder pizzaOrder;
 	
+	@NotNull(message="Pizza mandatory")
 	@JoinColumn(name = "PIZZA_ID", referencedColumnName = "PIZZA_ID")
 	@ManyToOne
 	private Pizza pizza;
@@ -66,23 +71,24 @@ public class PizzaLineItem implements Serializable {
 
 	private int[] toppingIds;
 	
-	@OneToMany(mappedBy = "itemId", fetch = FetchType.LAZY, cascade = { CascadeType.ALL }, orphanRemoval = true )
+	@NotNull(message="Toopings mandatory")
+	@OneToMany(mappedBy = "pizzaLineItem", fetch = FetchType.LAZY, cascade = { CascadeType.ALL }, orphanRemoval = true )
 	@JsonManagedReference
 	private Collection<PizzaTopping> pizzaToppingCollection =  new ArrayList<>();
 
 	public PizzaLineItem() {
 	}
 
-	public PizzaLineItem(Integer pizzaOrderId) {
-		this.itemId = pizzaOrderId;
+	public void setPizzaLineItem(Integer pizzaLineItem) {
+		this.pizzaLineItem = pizzaLineItem;
 	}
 
-	public Integer getPizzaOrderId() {
-		return itemId;
+	public Integer getPizzaLineItem() {
+		return pizzaLineItem;
 	}
 
-	public void setPizzaOrderId(Integer pizzaOrderId) {
-		this.itemId = pizzaOrderId;
+	public void setPizzaOrderId(Integer pizzaLineItem) {
+		this.pizzaLineItem = pizzaLineItem;
 	}
 
     public PizzaSize getPizzaSize() {
@@ -158,7 +164,7 @@ public class PizzaLineItem implements Serializable {
 	@Override
 	public int hashCode() {
 		int hash = 0;
-		hash += (itemId != null ? itemId.hashCode() : 0);
+		hash += (pizzaLineItem != null ? pizzaLineItem.hashCode() : 0);
 		return hash;
 	}
 
@@ -168,8 +174,8 @@ public class PizzaLineItem implements Serializable {
 			return false;
 		}
 		PizzaLineItem other = (PizzaLineItem) object;
-		if ((this.itemId == null && other.itemId != null)
-				|| (this.itemId != null && !this.itemId.equals(other.itemId))) {
+		if ((this.pizzaLineItem == null && other.pizzaLineItem != null)
+				|| (this.pizzaLineItem != null && !this.pizzaLineItem.equals(other.pizzaLineItem))) {
 			return false;
 		}
 		return true;
@@ -177,7 +183,12 @@ public class PizzaLineItem implements Serializable {
 
 	@Override
 	public String toString() {
-		return "pizzashop.PizzaOrder[ pizzaOrderId=" + itemId + " ]";
+		return "PizzaLineItem [pizzaLineItem=" + pizzaLineItem + ", pizzaSize=" + pizzaSize + ", price=" + price
+				+ ", notes=" + notes + ", crust=" + crust + ", pizzaOrder=" + pizzaOrder.getOrderId() + ", pizza=" + pizza
+				+ ", toppingIds=" + Arrays.toString(toppingIds) + ", pizzaToppingCollection=" + pizzaToppingCollection
+				+ "]";
 	}
+
+
 
 }

@@ -16,6 +16,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -26,7 +27,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
  * @author engan.bala
  */
 @Entity(name="PizzaOrder")
-@Table(name="ONLINE_ORDER")
+@Table(name="PIZZA_ORDER")
 @XmlRootElement
 public class PizzaOrder implements Serializable {
 
@@ -38,12 +39,15 @@ public class PizzaOrder implements Serializable {
     @Column(name = "ORDER_ID")
     private Long orderId;
     
+	@NotNull(message="Customer name mandatory")
 	@Column(name = "CUSTOMER_NAME")
     private String customerName;
 	
+	@NotNull(message="Customer address mandatory")
     @Column(name = "CUSTOMER_ADDRESS")
     private String customerAddress;
     
+	@NotNull(message="Customer contact number mandatory")
     @Column(name = "CUSTOMER_CONTACT")
     private String customerContact;
     
@@ -53,7 +57,8 @@ public class PizzaOrder implements Serializable {
     @Column(name = "DELIVERY_NOTE")
     private String deliveryNote;
     
-    @OneToMany(mappedBy = "orderId", fetch = FetchType.LAZY, cascade = { CascadeType.ALL }, orphanRemoval = true )
+    @NotNull(message="Atleast one line item mandatory")
+    @OneToMany(mappedBy = "pizzaOrder", fetch = FetchType.LAZY, cascade = { CascadeType.ALL }, orphanRemoval = true )
     @JsonManagedReference
     private Collection<PizzaLineItem> pizzaOrderCollection =  new ArrayList<>();
 
@@ -140,9 +145,13 @@ public class PizzaOrder implements Serializable {
         return true;
     }
 
-    @Override
-    public String toString() {
-        return "pizzashop.OnlineOrder[ orderId=" + orderId + " ]";
-    }
+	@Override
+	public String toString() {
+		return "PizzaOrder [orderId=" + orderId + ", customerName=" + customerName + ", customerAddress="
+				+ customerAddress + ", customerContact=" + customerContact + ", totalAmount=" + totalAmount
+				+ ", deliveryNote=" + deliveryNote + ", pizzaOrderCollection=" + pizzaOrderCollection + "]";
+	}
+
+   
     
 }

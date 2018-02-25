@@ -4,12 +4,14 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 
 import javax.persistence.Basic;
+import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -19,6 +21,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity(name = "Crust")
 @Table(name="CRUST")
 @XmlRootElement
+@Cacheable
 public class Crust implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -27,6 +30,7 @@ public class Crust implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Basic(optional = false)
 	@Column(name = "CUST_ID")
+	@NotNull(message="Pizza crust id mandatory")
 	private Integer custId;
 
 	@Column(name = "CUST_NAME")

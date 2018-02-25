@@ -5,6 +5,7 @@ import java.util.function.Consumer;
 import com.bala.pizza.domain.model.PizzaLineItem;
 import com.bala.pizza.domain.model.PizzaOrder;
 
+@Deprecated
 public class PizzaOrderBuilder {
 
 	PizzaOrder pizzaOrder = new PizzaOrder();

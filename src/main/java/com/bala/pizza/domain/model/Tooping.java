@@ -2,7 +2,6 @@ package com.bala.pizza.domain.model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.Collection;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -10,10 +9,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -31,6 +29,7 @@ public class Tooping implements Serializable
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Basic(optional = false)
 	@Column(name = "TOOPING_ID")
+	@NotNull(message="Tooping id mandatory")
 	private Integer toopingId;
 
 	@Column(name = "TOOPING_NAME")

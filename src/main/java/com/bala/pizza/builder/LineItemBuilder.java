@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.bala.pizza.domain.model.Crust;
 import com.bala.pizza.domain.model.Pizza;
 import com.bala.pizza.domain.model.PizzaLineItem;
-import com.bala.pizza.domain.model.PizzaOrder;
 import com.bala.pizza.domain.model.PizzaSize;
 import com.bala.pizza.domain.model.PizzaTopping;
 import com.bala.pizza.domain.model.Tooping;
@@ -14,6 +13,7 @@ import com.bala.pizza.domain.repository.PizzaRepository;
 import com.bala.pizza.domain.repository.PizzaSizeRepository;
 import com.bala.pizza.domain.repository.ToopingRepository;
 
+@Deprecated
 public class LineItemBuilder {
 	
 	@Autowired
