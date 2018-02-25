@@ -125,6 +125,10 @@ public class PizzaOrder implements Serializable {
     public void setPizzaLineItemCollection(Collection<PizzaLineItem> pizzaOrderCollection) {
         this.pizzaOrderCollection = pizzaOrderCollection;
     }
+    
+	public void addAmount(BigDecimal price){
+		this.setTotalAmount(this.getTotalAmount().add(price));
+	}
 
     @Override
     public int hashCode() {

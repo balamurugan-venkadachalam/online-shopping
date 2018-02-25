@@ -1,11 +1,9 @@
 package com.bala.pizza.builder;
 
-import java.util.function.Consumer;
-
 import com.bala.pizza.domain.model.PizzaLineItem;
 import com.bala.pizza.domain.model.PizzaOrder;
 
-@Deprecated
+
 public class PizzaOrderBuilder {
 
 	PizzaOrder pizzaOrder = new PizzaOrder();
@@ -22,8 +20,9 @@ public class PizzaOrderBuilder {
 					.withPizza(t.getPizza().getPizzaId())
 					.withCrust(t.getCrust().getCustId())
 					.withSize(t.getPizzaSize().getPizzaSizeId())
-					.withTopping(t.getToppingIds()).build();
+					.withTopping(t.getPizzaToppingCollection()).build();
 			pizzaOrder.getPizzaLineItemCollection().add(pizzaLineItem);
+			pizzaOrder.addAmount(pizzaLineItem.getPrice());
 		});
 
 		return this;

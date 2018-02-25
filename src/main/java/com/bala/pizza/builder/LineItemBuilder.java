@@ -1,5 +1,8 @@
 package com.bala.pizza.builder;
 
+import java.util.Collection;
+import java.util.Collections;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.bala.pizza.domain.model.Crust;
@@ -13,7 +16,6 @@ import com.bala.pizza.domain.repository.PizzaRepository;
 import com.bala.pizza.domain.repository.PizzaSizeRepository;
 import com.bala.pizza.domain.repository.ToopingRepository;
 
-@Deprecated
 public class LineItemBuilder {
 	
 	@Autowired
@@ -44,12 +46,12 @@ public class LineItemBuilder {
 		return this;
 	} 
 	
-	public LineItemBuilder withTopping(int[] toppingIds){
-		for (int toppingId : toppingIds) {
-			Tooping tooping = toopingRepository.getOne(toppingId);
+	public LineItemBuilder withTopping(Collection<PizzaTopping> collection){
+		collection.iterator().forEachRemaining(t -> {
+			Tooping tooping = toopingRepository.getOne(t.getToppingId().getToopingId());
 			lineItem.addPrice(tooping.getToopingPrice());
 			lineItem.getPizzaToppingCollection().add(new PizzaTopping(lineItem, tooping));
-		}		
+		});
 		return this;
 	} 
 	
