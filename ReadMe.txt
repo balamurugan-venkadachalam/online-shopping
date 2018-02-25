@@ -41,7 +41,7 @@ POST /pizza/order - input data
 //TODO: Back end
 
 1) Implement second level cache for all entity 
-2) Swagger documentation
+2) Swagger documentation 
 3) Java documentation
 4) Login for delivery and delete order
 5) Exception handling and proper rest response code
@@ -50,7 +50,10 @@ POST /pizza/order - input data
 8) Implement unit test and integration test  
 9) Google, Facebook sign in (Oauth 2 implementation)
 10) Password hashing
-11)   
+11) URL encryption  
+12) Payment gate way integration 
+13) Email, SMS, Push notification
+ 
 
 //TODO:Front end
 
